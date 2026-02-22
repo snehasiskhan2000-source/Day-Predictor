@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Predictor AI | Cyber-Dark</title>
+    <title>Day Predictor AI | Matrix Edition</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+    <canvas id="matrixCanvas"></canvas>
+
     <div class="container">
-        <div class="card" id="main-card">
+        <div class="card floating" id="main-card">
             <h1>Day Predictor AI</h1>
             
             <div id="selection-ui">
@@ -28,7 +30,6 @@
             </div>
 
             <div id="loading-ui" class="hidden">
-                <div class="scanner-line"></div>
                 <div class="loader-circle"></div>
                 <p id="loading-text" class="loading-msg">Connecting To Jadoo...</p>
                 <div class="progress-container">
@@ -48,7 +49,6 @@
                 
                 <button class="modern-restart" onclick="location.reload()">
                     <span>REBOOT SYSTEM</span>
-                    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M17.65,6.35C16.2,4.9 14.21,4 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20C15.73,20 18.84,17.45 19.73,14H17.65C16.83,16.33 14.61,18 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6C13.66,6 15.14,6.69 16.22,7.78L13,11H20V4L17.65,6.35Z"/></svg>
                 </button>
             </div>
         </div>
