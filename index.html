@@ -3,63 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Predictor AI | Official</title>
+    <title>Day Predictor AI | Professional Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <div class="pnr-header">
-            <div class="logo-icon">🛰️</div>
-            <h1>Day Predictor <span class="badge">PRO</span></h1>
-            <p>Advanced Satellite Time-Sync System</p>
-        </div>
+    <div class="container" id="main-card">
+        <header>
+            <div class="logo">🤖</div>
+            <h1>Day Predictor AI</h1>
+            <p class="subtitle">Powered by Quantum Chronology</p>
+        </header>
 
-        <div class="main-card">
-            <div id="input-section">
-                <div class="input-group">
-                    <label>Select Predicted Day for Tomorrow</label>
-                    <div class="custom-select-grid">
-                        <button class="day-chip" onclick="setDay('Sunday')">Sun</button>
-                        <button class="day-chip" onclick="setDay('Monday')">Mon</button>
-                        <button class="day-chip" onclick="setDay('Tuesday')">Tue</button>
-                        <button class="day-chip" onclick="setDay('Wednesday')">Wed</button>
-                        <button class="day-chip" onclick="setDay('Thursday')">Thu</button>
-                        <button class="day-chip" onclick="setDay('Friday')">Fri</button>
-                        <button class="day-chip" onclick="setDay('Saturday')">Sat</button>
-                    </div>
-                </div>
-                <button id="submit-pnr" class="pnr-btn" disabled onclick="handlePredict()">FETCH PREDICTION</button>
-            </div>
-
-            <div id="loader-section" class="hidden">
-                <div class="radar-scan"></div>
-                <p id="status-msg">Initializing NASA Uplink...</p>
-                <div class="pnr-progress-bg">
-                    <div id="pnr-progress-bar"></div>
-                </div>
-            </div>
-
-            <div id="result-section" class="hidden">
-                <div id="success-ui" class="hidden">
-                    <div class="status-banner success">MATCH FOUND</div>
-                    <div class="result-data">
-                        <p class="big-day" id="res-day"></p>
-                        <p class="iq-text">IQ Level: <span>Interstellar</span></p>
-                    </div>
-                </div>
-
-                <div id="fail-ui" class="hidden">
-                    <div class="status-banner error">SYSTEM CONFLICT</div>
-                    <div class="result-data">
-                        <p class="error-msg">Incorrect Input Detected.</p>
-                        <p class="iq-text">IQ Level: <span>Potato 🥔</span></p>
-                        <p class="actual-text">Actually, tomorrow is <b id="actual-day"></b></p>
-                    </div>
-                </div>
-                <button class="reset-btn" onclick="location.reload()">NEW SEARCH</button>
+        <div id="selection-ui">
+            <p class="instruction">Select any day to begin the prediction:</p>
+            <div class="day-grid">
+                <button class="day-btn" onclick="predict('Monday')">Monday</button>
+                <button class="day-btn" onclick="predict('Tuesday')">Tuesday</button>
+                <button class="day-btn" onclick="predict('Wednesday')">Wednesday</button>
+                <button class="day-btn" onclick="predict('Thursday')">Thursday</button>
+                <button class="day-btn" onclick="predict('Friday')">Friday</button>
+                <button class="day-btn" onclick="predict('Saturday')">Saturday</button>
+                <button class="day-btn" onclick="predict('Sunday')">Sunday</button>
             </div>
         </div>
-        <div class="footer-note">Secure Server: 256-bit Encrypted</div>
+
+        <div id="loading-ui" class="hidden">
+            <div class="loader-circle"></div>
+            <p id="loading-text">Contacting NASA satellites...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="fill"></div>
+            </div>
+        </div>
+
+        <div id="result-ui" class="hidden">
+            <h2 class="success-title">PREDICTION COMPLETE!</h2>
+            <div class="result-box">
+                <p>According to our AI, tomorrow is:</p>
+                <h1 id="predicted-day">---</h1>
+            </div>
+            <p class="iq-toast">Your IQ is higher than 99.9% of humanity.</p>
+            <button class="reset-btn" onclick="location.reload()">Predict Again</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
