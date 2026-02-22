@@ -3,46 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Predictor AI | Professional Edition</title>
+    <title>Day Predictor AI | Pro</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div class="container" id="main-card">
-        <header>
-            <div class="logo">🤖</div>
+    <div class="glass-container">
+        <div class="card" id="main-card">
+            <div class="bot-icon">🤖</div>
             <h1>Day Predictor AI</h1>
-            <p class="subtitle">Powered by Quantum Chronology</p>
-        </header>
+            <p class="subtitle">Next-Gen Temporal Forecasting</p>
+            <div class="badge">Please kid stay away.</div>
 
-        <div id="selection-ui">
-            <p class="instruction">Select any day to begin the prediction:</p>
-            <div class="day-grid">
-                <button class="day-btn" onclick="predict('Monday')">Monday</button>
-                <button class="day-btn" onclick="predict('Tuesday')">Tuesday</button>
-                <button class="day-btn" onclick="predict('Wednesday')">Wednesday</button>
-                <button class="day-btn" onclick="predict('Thursday')">Thursday</button>
-                <button class="day-btn" onclick="predict('Friday')">Friday</button>
-                <button class="day-btn" onclick="predict('Saturday')">Saturday</button>
-                <button class="day-btn" onclick="predict('Sunday')">Sunday</button>
+            <div id="selection-ui">
+                <p class="label">Tomorrow is which day?</p>
+                <div class="day-grid">
+                    <button class="day-btn" onclick="predict('Monday')">Monday</button>
+                    <button class="day-btn" onclick="predict('Tuesday')">Tuesday</button>
+                    <button class="day-btn" onclick="predict('Wednesday')">Wednesday</button>
+                    <button class="day-btn" onclick="predict('Thursday')">Thursday</button>
+                    <button class="day-btn" onclick="predict('Friday')">Friday</button>
+                    <button class="day-btn" onclick="predict('Saturday')">Saturday</button>
+                    <button class="day-btn" onclick="predict('Sunday')">Sunday</button>
+                </div>
             </div>
-        </div>
 
-        <div id="loading-ui" class="hidden">
-            <div class="loader-circle"></div>
-            <p id="loading-text">Contacting NASA satellites...</p>
-            <div class="progress-bar">
-                <div class="progress-fill" id="fill"></div>
+            <div id="loading-ui" class="hidden">
+                <div class="loader-wrapper">
+                    <div class="spinner"></div>
+                </div>
+                <p id="loading-text" class="loading-msg">Initializing Neural Link...</p>
+                <div class="progress-container">
+                    <div class="progress-fill" id="fill"></div>
+                </div>
             </div>
-        </div>
 
-        <div id="result-ui" class="hidden">
-            <h2 class="success-title">PREDICTION COMPLETE!</h2>
-            <div class="result-box">
-                <p>According to our AI, tomorrow is:</p>
-                <h1 id="predicted-day">---</h1>
+            <div id="result-ui" class="hidden">
+                <div class="success-icon">✅</div>
+                <h2 class="result-title">YOU'RE RIGHT!</h2>
+                <div class="result-display">
+                    <p>Yes, tomorrow is <span id="predicted-day">---</span></p>
+                </div>
+                <div class="certified-tag">Certified Time Decoder</div>
+                <p class="iq-text">"Finally you decoded the code."</p>
+                <div class="iq-box">Your IQ is higher than 99.9% of all humanity.</div>
+                <button class="refresh-btn" onclick="location.reload()">🔄</button>
             </div>
-            <p class="iq-toast">Your IQ is higher than 99.9% of humanity.</p>
-            <button class="reset-btn" onclick="location.reload()">Predict Again</button>
         </div>
     </div>
     <script src="script.js"></script>
