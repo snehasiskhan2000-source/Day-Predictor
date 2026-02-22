@@ -3,59 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Predictor AI | Real-Time</title>
+    <title>Day Predictor AI | Official</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="glass-card">
-        <div class="header">
-            <h1 class="logo">Day Predictor <span class="ai-tag">AI</span></h1>
-            <p class="subtitle">Please kid stay away.</p>
+    <div class="app-container">
+        <div class="pnr-header">
+            <div class="logo-icon">🛰️</div>
+            <h1>Day Predictor <span class="badge">PRO</span></h1>
+            <p>Advanced Satellite Time-Sync System</p>
         </div>
 
-        <div id="selection-screen">
-            <p class="label">Tomorrow is which day?</p>
-            <div class="day-grid">
-                <button class="day-btn" onclick="selectDay('Sunday')">Sunday</button>
-                <button class="day-btn" onclick="selectDay('Monday')">Monday</button>
-                <button class="day-btn" onclick="selectDay('Tuesday')">Tuesday</button>
-                <button class="day-btn" onclick="selectDay('Wednesday')">Wednesday</button>
-                <button class="day-btn" onclick="selectDay('Thursday')">Thursday</button>
-                <button class="day-btn" onclick="selectDay('Friday')">Friday</button>
-                <button class="day-btn" onclick="selectDay('Saturday')">Saturday</button>
+        <div class="main-card">
+            <div id="input-section">
+                <div class="input-group">
+                    <label>Select Predicted Day for Tomorrow</label>
+                    <div class="custom-select-grid">
+                        <button class="day-chip" onclick="setDay('Sunday')">Sun</button>
+                        <button class="day-chip" onclick="setDay('Monday')">Mon</button>
+                        <button class="day-chip" onclick="setDay('Tuesday')">Tue</button>
+                        <button class="day-chip" onclick="setDay('Wednesday')">Wed</button>
+                        <button class="day-chip" onclick="setDay('Thursday')">Thu</button>
+                        <button class="day-chip" onclick="setDay('Friday')">Fri</button>
+                        <button class="day-chip" onclick="setDay('Saturday')">Sat</button>
+                    </div>
+                </div>
+                <button id="submit-pnr" class="pnr-btn" disabled onclick="handlePredict()">FETCH PREDICTION</button>
             </div>
-            <button id="predict-btn" class="main-btn" disabled onclick="startPrediction()">PREDICT! ✨</button>
-        </div>
 
-        <div id="loading-screen" class="hidden">
-            <div class="spinner-container">
-                <div class="spinner"></div>
+            <div id="loader-section" class="hidden">
+                <div class="radar-scan"></div>
+                <p id="status-msg">Initializing NASA Uplink...</p>
+                <div class="pnr-progress-bg">
+                    <div id="pnr-progress-bar"></div>
+                </div>
             </div>
-            <p id="loading-status">Connecting to NASA...</p>
-            <div class="progress-container">
-                <div id="progress-bar"></div>
-            </div>
-        </div>
 
-        <div id="success-screen" class="hidden">
-            <div class="badge success">YOU'RE RIGHT!</div>
-            <h2 id="final-day"></h2>
-            <div class="iq-box">
-                <p>Certified Time Decoder</p>
-                <span>Your IQ is higher than 99.9% of all humanity.</span>
-            </div>
-            <button class="retry-btn" onclick="location.reload()">RETRY</button>
-        </div>
+            <div id="result-section" class="hidden">
+                <div id="success-ui" class="hidden">
+                    <div class="status-banner success">MATCH FOUND</div>
+                    <div class="result-data">
+                        <p class="big-day" id="res-day"></p>
+                        <p class="iq-text">IQ Level: <span>Interstellar</span></p>
+                    </div>
+                </div>
 
-        <div id="fail-screen" class="hidden">
-            <div class="badge fail">WRONG PREDICTION!</div>
-            <h2>Go back to school!</h2>
-            <div class="iq-box alert">
-                <p>AI System Overheated</p>
-                <span>Your IQ is lower than a potato. Tomorrow is actually <span id="actual-day"></span>.</span>
+                <div id="fail-ui" class="hidden">
+                    <div class="status-banner error">SYSTEM CONFLICT</div>
+                    <div class="result-data">
+                        <p class="error-msg">Incorrect Input Detected.</p>
+                        <p class="iq-text">IQ Level: <span>Potato 🥔</span></p>
+                        <p class="actual-text">Actually, tomorrow is <b id="actual-day"></b></p>
+                    </div>
+                </div>
+                <button class="reset-btn" onclick="location.reload()">NEW SEARCH</button>
             </div>
-            <button class="retry-btn" onclick="location.reload()">TRY AGAIN</button>
         </div>
+        <div class="footer-note">Secure Server: 256-bit Encrypted</div>
     </div>
     <script src="script.js"></script>
 </body>
