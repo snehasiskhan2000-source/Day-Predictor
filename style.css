@@ -1,58 +1,85 @@
 :root {
     --bg-dark: #020617;
-    --card-bg: rgba(15, 23, 42, 0.9); /* Slightly transparent to see matrix */
+    --card-bg: rgba(10, 15, 30, 0.95); 
     --blue-neon: #00d2ff;
-    --blue-deep: #1e40af;
-    --text-color: #f1f5f9;
+    --text-pure: #ffffff; /* Improved Readability */
+    --warning-red: #ff4757;
 }
 
 body {
     margin: 0;
-    overflow: hidden; /* Prevent scrolling because of matrix */
-    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
     background: var(--bg-dark);
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
 }
 
 #matrixCanvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
     z-index: -1;
-    opacity: 0.15; /* Subtle matrix effect */
+    opacity: 0.2;
 }
 
-/* Floating Animation */
-.floating {
-    animation: floatAnim 4s ease-in-out infinite;
-}
-
+.floating { animation: floatAnim 4s ease-in-out infinite; }
 @keyframes floatAnim {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
 .card {
     background: var(--card-bg);
-    padding: 35px;
+    padding: 40px;
     border-radius: 24px;
-    border: 1px solid rgba(0, 210, 255, 0.3);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 210, 255, 0.1);
-    width: 360px;
+    border: 1px solid var(--blue-neon);
+    width: 380px;
     text-align: center;
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 40px rgba(0, 210, 255, 0.2);
 }
 
-/* Rest of your button/grid styles stay the same as previous version... */
-.day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.day-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; color: white; cursor: pointer; transition: 0.3s; }
-.day-btn:hover { background: var(--blue-deep); border-color: var(--blue-neon); }
+.glow-text {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--blue-neon);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.warning-badge {
+    color: var(--warning-red);
+    border: 1.5px solid var(--warning-red);
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.label { color: var(--text-pure); font-size: 18px; margin-bottom: 20px; }
+
+.day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+.day-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: var(--text-pure);
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.day-btn:hover { background: var(--blue-neon); color: #000; box-shadow: 0 0 15px var(--blue-neon); }
 .sunday { grid-column: span 2; }
-.warning-badge { color: #ef4444; border: 1px solid #ef4444; padding: 4px 12px; border-radius: 50px; font-size: 11px; margin-bottom: 15px; display: inline-block; }
+
+/* Loading Components */
+.loading-msg { color: var(--text-pure); font-weight: 600; margin: 20px 0; }
+.progress-container { background: #000; height: 12px; border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: var(--blue-neon); box-shadow: 0 0 10px var(--blue-neon); transition: width 0.4s; }
+
 .hidden { display: none !important; }
