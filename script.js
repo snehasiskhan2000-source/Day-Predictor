@@ -1,3 +1,31 @@
+// --- MATRIX BACKGROUND LOGIC ---
+const canvas = document.getElementById('matrixCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#00d2ff"; // Blue matrix instead of Green
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(drawMatrix, 50);
+
+// --- PREDICTION LOGIC ---
 const steps = [
     "Connecting To Jadoo...",
     "Consulting To Elon Mask...",
@@ -8,13 +36,6 @@ const steps = [
     "Contacting To Hubble Telescope...",
     "Getting The Info From The Sun...",
     "Finalising Prediction..."
-];
-
-const funnyInsults = [
-    "Error 404: Brain Not Found.",
-    "Calculated IQ: Room Temperature.",
-    "Did you hit your head today?",
-    "My AI is laughing at you right now."
 ];
 
 async function checkDate(userChoice) {
@@ -29,11 +50,10 @@ async function checkDate(userChoice) {
     const fill = document.getElementById('fill');
     const text = document.getElementById('loading-text');
 
-    // Loop through steps with 2s delay
     for (let i = 0; i < steps.length; i++) {
         text.innerText = steps[i];
         fill.style.width = ((i + 1) / steps.length) * 100 + "%";
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(res => setTimeout(res, 2000)); // Exact 2s delay
     }
 
     showResult(isCorrect, realTomorrow);
@@ -41,14 +61,12 @@ async function checkDate(userChoice) {
 
 function showResult(isCorrect, realTomorrow) {
     document.getElementById('loading-ui').classList.add('hidden');
-    const resUI = document.getElementById('result-ui');
-    resUI.classList.remove('hidden');
+    document.getElementById('result-ui').classList.remove('hidden');
 
     const header = document.getElementById('result-header');
     const icon = document.getElementById('status-icon');
     const quote = document.getElementById('funny-quote');
     const desc = document.getElementById('result-desc');
-    const iqBox = document.getElementById('iq-box-id');
 
     if (isCorrect) {
         icon.innerText = "✅";
@@ -62,7 +80,6 @@ function showResult(isCorrect, realTomorrow) {
         header.innerText = "YOU'RE STUPID!";
         header.style.color = "#ef4444";
         desc.innerHTML = `Actually, tomorrow is <b>${realTomorrow}</b>`;
-        quote.innerText = funnyInsults[Math.floor(Math.random() * funnyInsults.length)];
-        iqBox.innerText = "System Analysis: IQ too low to measure.";
+        quote.innerText = "Error 404: Brain Not Found.";
     }
 }
