@@ -1,14 +1,14 @@
 const messages = [
-    "Consulting with Elon Musk...",
+    "Connecting to Jaadu...",
+    "Consulting to Elon Musk...",
     "Contacting NASA satellites...",
+    "Calling to Stephen Hawking...",
     "Running DNA analysis...",
     "Decrypting space-time...",
-    "Getting info from the Sun...",
-    "Consulting Jaadu (Alien)...",
+    "Contacting Hubble Telescope...",
+    "Getting the info from the Sun...",
     "Finalizing prediction..."
 ];
-
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 function predict(selectedDay) {
     document.getElementById('selection-ui').classList.add('hidden');
@@ -20,11 +20,10 @@ function predict(selectedDay) {
     const text = document.getElementById('loading-text');
 
     const interval = setInterval(() => {
-        progress += 1.5;
+        progress += 1.2;
         fill.style.width = progress + "%";
 
-        // Change text every 15% progress
-        if (progress % 15 < 1.5 && msgIndex < messages.length) {
+        if (progress % 11 < 1.2 && msgIndex < messages.length) {
             text.innerText = messages[msgIndex];
             msgIndex++;
         }
@@ -33,16 +32,21 @@ function predict(selectedDay) {
             clearInterval(interval);
             showResult(selectedDay);
         }
-    }, 50);
+    }, 40);
 }
 
-function showResult(selectedDay) {
+function showResult(day) {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let nextDay = days[(days.indexOf(day) + 1) % 7];
+    
     document.getElementById('loading-ui').classList.add('hidden');
     document.getElementById('result-ui').classList.remove('hidden');
+    document.getElementById('predicted-day').innerText = nextDay;
 
-    // Logic: Find the index of the selected day and add 1
-    const currentIndex = days.indexOf(selectedDay);
-    const nextIndex = (currentIndex + 1) % 7;
-    
-    document.getElementById('predicted-day').innerText = days[nextIndex];
+    // Trigger Confetti!
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
 }
