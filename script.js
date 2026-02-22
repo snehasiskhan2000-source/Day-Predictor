@@ -1,53 +1,48 @@
-let selected = "";
-const logs = [
-    "Establishing Satellite Link...",
-    "Bypassing ISRO Firewall...",
-    "Querying Elon Musk's Neuralink...",
-    "Syncing with Atomic Clock...",
-    "Analyzing Atmospheric Pressure...",
-    "Confirming with Jadu (Mars)...",
-    "Decoding Time-Space Fabric..."
+const messages = [
+    "Consulting with Elon Musk...",
+    "Contacting NASA satellites...",
+    "Running DNA analysis...",
+    "Decrypting space-time...",
+    "Getting info from the Sun...",
+    "Consulting Jaadu (Alien)...",
+    "Finalizing prediction..."
 ];
 
-function setDay(day) {
-    selected = day;
-    document.querySelectorAll('.day-chip').forEach(c => c.classList.remove('selected'));
-    event.target.classList.add('selected');
-    document.getElementById('submit-pnr').classList.add('active');
-    document.getElementById('submit-pnr').disabled = false;
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+function predict(selectedDay) {
+    document.getElementById('selection-ui').classList.add('hidden');
+    document.getElementById('loading-ui').classList.remove('hidden');
+
+    let progress = 0;
+    let msgIndex = 0;
+    const fill = document.getElementById('fill');
+    const text = document.getElementById('loading-text');
+
+    const interval = setInterval(() => {
+        progress += 1.5;
+        fill.style.width = progress + "%";
+
+        // Change text every 15% progress
+        if (progress % 15 < 1.5 && msgIndex < messages.length) {
+            text.innerText = messages[msgIndex];
+            msgIndex++;
+        }
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            showResult(selectedDay);
+        }
+    }, 50);
 }
 
-async function handlePredict() {
-    document.getElementById('input-section').classList.add('hidden');
-    document.getElementById('loader-section').classList.remove('hidden');
+function showResult(selectedDay) {
+    document.getElementById('loading-ui').classList.add('hidden');
+    document.getElementById('result-ui').classList.remove('hidden');
 
-    const bar = document.getElementById('pnr-progress-bar');
-    const msg = document.getElementById('status-msg');
-
-    for (let i = 0; i < logs.length; i++) {
-        msg.innerText = logs[i];
-        bar.style.width = ((i + 1) / logs.length) * 100 + "%";
-        await new Promise(res => setTimeout(res, 600)); 
-    }
-
-    showFinalResult();
-}
-
-function showFinalResult() {
-    document.getElementById('loader-section').classList.add('hidden');
-    document.getElementById('result-section').classList.remove('hidden');
-
-    // REAL-TIME DATE CALCULATION
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const todayIndex = new Date().getDay();
-    const tomorrowIndex = (todayIndex + 1) % 7;
-    const tomorrowReal = days[tomorrowIndex];
-
-    if (selected === tomorrowReal) {
-        document.getElementById('success-ui').classList.remove('hidden');
-        document.getElementById('res-day').innerText = "Tomorrow is " + tomorrowReal;
-    } else {
-        document.getElementById('fail-ui').classList.remove('hidden');
-        document.getElementById('actual-day').innerText = tomorrowReal;
-    }
+    // Logic: Find the index of the selected day and add 1
+    const currentIndex = days.indexOf(selectedDay);
+    const nextIndex = (currentIndex + 1) % 7;
+    
+    document.getElementById('predicted-day').innerText = days[nextIndex];
 }
