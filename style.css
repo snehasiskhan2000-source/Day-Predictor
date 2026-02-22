@@ -1,105 +1,79 @@
+* { box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+
 body {
+    background: #f0f2f5;
     margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #fbcfe8 0%, #e879f9 100%);
-    font-family: 'Inter', sans-serif;
+    padding-top: 50px;
 }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    text-align: center;
-    border: 3px solid #000;
+.app-container { width: 100%; max-width: 450px; padding: 20px; }
+
+.pnr-header { text-align: center; margin-bottom: 25px; }
+.pnr-header h1 { margin: 5px 0; font-size: 24px; color: #1a1a1a; }
+.badge { background: #ff4757; color: white; font-size: 12px; padding: 2px 6px; border-radius: 4px; vertical-align: middle; }
+.pnr-header p { color: #747d8c; margin: 0; font-size: 14px; }
+
+.main-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-bottom: 4px solid #2f3542;
 }
 
-.ai-tag {
-    background: #000;
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-}
-
-.day-grid {
+.custom-select-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 20px 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 15px 0;
 }
 
-.day-btn {
-    padding: 12px;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    background: #fff;
+.day-chip {
+    padding: 10px 5px;
+    border: 1px solid #dfe4ea;
+    background: white;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: 0.2s;
 }
 
-.day-btn.active {
-    background: #000;
-    color: #fff;
-    border-color: #000;
+.day-chip.selected {
+    background: #2f3542;
+    color: white;
+    border-color: #2f3542;
 }
 
-.main-btn {
+.pnr-btn {
     width: 100%;
-    padding: 15px;
-    border-radius: 12px;
+    background: #ced6e0;
+    color: white;
     border: none;
-    background: #ccc;
-    color: #fff;
-    font-size: 1rem;
+    padding: 16px;
+    border-radius: 12px;
     font-weight: bold;
+    font-size: 16px;
     cursor: not-allowed;
+    margin-top: 10px;
 }
 
-.main-btn.enabled {
-    background: #f472b6;
+.pnr-btn.active {
+    background: #2ed573;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
+    box-shadow: 0 4px 12px rgba(46, 213, 115, 0.3);
 }
 
-/* Loading animations */
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #f472b6;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-}
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
+/* Loading Animations */
 .hidden { display: none; }
+.pnr-progress-bg { background: #f1f2f6; height: 8px; border-radius: 10px; margin-top: 20px; overflow: hidden; }
+#pnr-progress-bar { background: #1e90ff; width: 0%; height: 100%; transition: 0.3s; }
 
-.badge {
-    padding: 5px 15px;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
+.status-banner { padding: 8px; border-radius: 6px; font-weight: bold; font-size: 14px; margin-bottom: 20px; }
+.success { background: #e8f9ee; color: #2ed573; border: 1px solid #2ed573; }
+.error { background: #fff0f0; color: #ff4757; border: 1px solid #ff4757; }
 
-.success { background: #dcfce7; color: #166534; }
-.fail { background: #fee2e2; color: #991b1b; }
-
-.iq-box {
-    background: #f8fafc;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
-    border-left: 5px solid #000;
-}
+.big-day { font-size: 32px; font-weight: 800; margin: 10px 0; color: #2f3542; }
+.iq-text span { color: #1e90ff; font-weight: bold; }
+.reset-btn { width: 100%; background: none; border: 2px solid #dfe4ea; padding: 12px; border-radius: 8px; cursor: pointer; margin-top: 20px; }
