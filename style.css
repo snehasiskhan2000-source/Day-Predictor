@@ -1,34 +1,55 @@
 :root {
-    --primary: #2c3e50;
-    --accent: #3498db;
-    --bg: #f4f7f6;
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --accent: #ff7675;
+    --bg: #ffeaa7; /* Soft yellow theme like the video */
     --white: #ffffff;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    background-image: radial-gradient(#fdcb6e 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
-.container {
+.glass-container {
+    perspective: 1000px;
+}
+
+.card {
     background: var(--white);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 450px;
+    padding: 30px;
+    border-radius: 30px;
+    border: 4px solid #2d3436;
+    box-shadow: 10px 10px 0px #2d3436;
+    width: 350px;
     text-align: center;
-    transition: transform 0.3s ease;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-h1 { color: var(--primary); margin-bottom: 0.5rem; }
-.subtitle { color: #7f8c8d; font-size: 0.9rem; margin-bottom: 2rem; }
+@keyframes popIn {
+    0% { transform: scale(0.5) rotate(-5deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
 
+.badge {
+    background: #fab1a0;
+    color: #d63031;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Day Buttons Grid */
 .day-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -36,80 +57,59 @@ h1 { color: var(--primary); margin-bottom: 0.5rem; }
 }
 
 .day-btn {
+    background: white;
+    border: 2px solid #2d3436;
     padding: 12px;
-    border: 2px solid #ecf0f1;
-    background: none;
-    border-radius: 8px;
-    cursor: pointer;
+    border-radius: 12px;
     font-weight: 600;
-    transition: all 0.2s;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .day-btn:hover {
-    background: var(--accent);
+    background: var(--primary);
     color: white;
-    border-color: var(--accent);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 0px #2d3436;
 }
 
-/* Loading States */
-.hidden { display: none; }
-
-.loader-circle {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid var(--accent);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
-}
-
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-.progress-bar {
-    background: #eee;
-    height: 10px;
-    border-radius: 5px;
+/* Loading UI */
+.progress-container {
+    background: #dfe6e9;
+    height: 15px;
+    border-radius: 10px;
+    border: 2px solid #2d3436;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .progress-fill {
-    background: var(--accent);
     height: 100%;
     width: 0%;
+    background: repeating-linear-gradient(45deg, var(--accent), var(--accent) 10px, #ff8b89 10px, #ff8b89 20px);
     transition: width 0.3s ease;
 }
 
-/* Result Styles */
-.result-box {
-    background: #e8f4fd;
-    padding: 1rem;
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Result Box */
+.iq-box {
+    background: #ffeaa7;
+    border: 2px solid #2d3436;
+    padding: 10px;
     border-radius: 10px;
-    margin: 1.5rem 0;
+    font-size: 14px;
+    margin-top: 15px;
 }
 
-.iq-toast {
-    background: #27ae60;
-    color: white;
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    animation: bounce 0.5s ease;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-.reset-btn {
-    margin-top: 20px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+.hidden { display: none !important; }
