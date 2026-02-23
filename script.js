@@ -30,6 +30,20 @@ const steps = [
     "Finalising Prediction..."
 ];
 
+// Logic for the secret popup
+function showSecret() {
+    const popup = document.getElementById('secret-popup');
+    popup.classList.remove('hidden');
+    // Allow the browser to register the removal of 'hidden' before adding 'active'
+    setTimeout(() => popup.classList.add('active'), 10);
+    
+    // Hide it after 2.5 seconds
+    setTimeout(() => {
+        popup.classList.remove('active');
+        setTimeout(() => popup.classList.add('hidden'), 400);
+    }, 2500);
+}
+
 async function checkDate(userChoice) {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const realTomorrow = days[(new Date().getDay() + 1) % 7];
@@ -40,7 +54,6 @@ async function checkDate(userChoice) {
 
     for (let i = 0; i < steps.length; i++) {
         document.getElementById('loading-text').innerText = steps[i];
-        // This updates the new progress bar width
         document.getElementById('fill').style.width = ((i + 1) / steps.length) * 100 + "%";
         await new Promise(res => setTimeout(res, 2000)); 
     }
