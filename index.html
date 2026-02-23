@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Day Predictor AI | Matrix Edition</title>
+    <title>Day Predictor AI</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -13,8 +13,6 @@
 
     <div class="container">
         <div class="card floating" id="main-card">
-            <div class="scan-line"></div>
-            
             <h1 class="main-title">Day Predictor AI</h1>
             
             <div id="selection-ui">
@@ -40,10 +38,10 @@
             </div>
 
             <div id="result-ui" class="hidden">
-                <h2 id="result-header" class="status-title"></h2>
-                <p id="result-desc" class="actual-day-text"></p>
+                <h2 id="result-header"></h2>
+                <p id="result-desc"></p>
                 <div class="cert-container"><span class="cert-badge">Certified Time Decoder</span></div>
-                <p id="funny-quote" class="decoded-text"></p>
+                <p id="funny-quote"></p>
                 <div class="iq-box">Your IQ is higher than 99.9% of all humanity.</div>
                 
                 <button class="old-reboot-btn" onclick="location.reload()">
