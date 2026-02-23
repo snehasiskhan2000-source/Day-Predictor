@@ -3,7 +3,6 @@
     --card-bg: rgba(6, 11, 25, 0.98); 
     --neon-blue: #00d2ff;
     --gemini-light: #8ab4f8;
-    --white: #ffffff;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,82 +19,69 @@ body {
 
 #matrixCanvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.2; }
 
-/* HARD-LOCKED 90% WIDTH */
+/* FIXED CARD FRAME */
 .card {
     background: var(--card-bg);
-    padding: 35px 20px;
-    border-radius: 30px;
+    padding: 25px 15px;
+    border-radius: 32px;
     border: 2px solid var(--neon-blue);
-    width: 90vw; /* Hard lock to 90% of screen width */
-    max-width: 380px; 
-    min-height: 480px; /* Prevents height jumping */
+    width: 90vw;
+    max-width: 380px;
+    min-height: 520px; /* Fixed height to prevent "cooking" layout */
     text-align: center;
-    box-shadow: 0 0 40px rgba(0, 210, 255, 0.25);
-    color: var(--white);
+    box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
-.floating { animation: float 4s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+.main-title { font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: 1.5rem; margin-bottom: 10px; flex-shrink: 0; }
 
-/* GEMINI LOADING STYLE */
-.gemini-container { margin-bottom: 25px; }
-.gemini-star {
-    font-size: 70px;
-    color: var(--gemini-light);
-    text-shadow: 0 0 25px #4285f4, 0 0 50px #9b72cb;
-    animation: geminiPulse 1.8s infinite ease-in-out;
-}
-@keyframes geminiPulse {
-    0%, 100% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.15); opacity: 1; }
-}
-
-.main-title { font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: 1.6rem; margin-bottom: 20px; }
-
-.warning-badge {
-    color: #ff4757;
-    border: 1.5px solid #ff4757;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 11px;
-    margin-bottom: 25px;
-    display: inline-block;
-}
-
-.day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
-.day-btn {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(0, 210, 255, 0.3);
-    color: var(--white);
-    padding: 16px 5px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 14px;
-}
-.sunday { grid-column: span 2; }
-
-/* REBOOT BUTTON */
-.reboot-circle-btn {
-    margin: 25px auto 0;
-    background: var(--neon-blue);
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+/* CONTENT CONTAINER */
+.frame-container {
+    position: relative;
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.reboot-circle-btn svg { width: 26px; height: 26px; color: #000; }
+
+.frame {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.frame.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* GEMINI STAR STYLE */
+.gemini-star {
+    font-size: 80px;
+    color: var(--gemini-light);
+    text-shadow: 0 0 30px #4285f4;
+    animation: geminiPulse 2s infinite ease-in-out;
+    margin-bottom: 20px;
+}
+
+@keyframes geminiPulse { 
+    0%, 100% { transform: scale(1); opacity: 0.8; } 
+    50% { transform: scale(1.1); opacity: 1; } 
+}
+
+/* BUTTONS & UI */
+.warning-badge { color: #ff4757; border: 1.5px solid #ff4757; padding: 4px 12px; border-radius: 50px; font-weight: 800; font-size: 10px; margin-bottom: 15px; display: inline-block; }
+.day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.day-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(0, 210, 255, 0.3); color: white; padding: 14px 0; border-radius: 12px; font-weight: 700; font-size: 13px; }
+.sunday { grid-column: span 2; }
 
 /* PROGRESS BAR */
-.progress-bar-bg { background: #111; height: 8px; border-radius: 10px; overflow: hidden; margin: 25px 0; width: 100%; }
-.progress-fill { height: 100%; width: 0%; background: linear-gradient(to right, #4285f4, #9b72cb); transition: width 0.5s ease-out; }
+.progress-bar-bg { background: #000; height: 8px; border-radius: 10px; overflow: hidden; margin-top: 20px; }
+.progress-fill { height: 100%; width: 0%; background: linear-gradient(to right, #4285f4, #9b72cb); transition: width 0.4s; }
 
-.hidden { display: none !important; }
-.cert-badge { background: #ff4757; padding: 5px 12px; border-radius: 5px; font-size: 12px; font-weight: bold; }
-.iq-box { background: #f9ca24; color: #000; padding: 12px; border-radius: 10px; font-weight: 800; font-size: 13px; margin-top: 20px; }
+/* RESULTS */
+.cert-badge { background: #ff4757; padding: 5px 15px; border-radius: 6px; font-size: 12px; font-weight: bold; margin: 10px 0; display: inline-block; }
+.iq-box { background: #f9ca24; color: #000; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 13px; margin-top: 15px; }
+.reboot-circle-btn { margin-top: 20px; background: var(--neon-blue); border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.reboot-circle-btn svg { width: 24px; height: 24px; }
