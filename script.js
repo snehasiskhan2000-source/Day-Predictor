@@ -27,7 +27,7 @@ const steps = [
     "Running DNA Analysis...", "Decrypting Space-Time...",
     "Contacting To Hubble Telescope...", "Getting The Info From The Sun...",
     "Finalising Prediction..."
-]; // Exact steps
+]; //
 
 async function checkDate(userChoice) {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -40,7 +40,7 @@ async function checkDate(userChoice) {
     for (let i = 0; i < steps.length; i++) {
         document.getElementById('loading-text').innerText = steps[i];
         document.getElementById('fill').style.width = ((i + 1) / steps.length) * 100 + "%";
-        await new Promise(res => setTimeout(res, 2000)); // 2-second delay
+        await new Promise(res => setTimeout(res, 2000)); // 2-second processing time
     }
 
     showResult(isCorrect, realTomorrow);
