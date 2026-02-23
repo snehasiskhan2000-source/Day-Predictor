@@ -27,7 +27,7 @@ const steps = [
     "Running DNA Analysis...", "Decrypting Space-Time...",
     "Contacting To Hubble Telescope...", "Getting The Info From The Sun...",
     "Finalising Prediction..."
-]; //
+]; // Exact steps
 
 async function checkDate(userChoice) {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
