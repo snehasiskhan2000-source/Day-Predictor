@@ -13,9 +13,9 @@
 
     <div class="container">
         <div class="card floating" id="main-card">
-            <h1 class="main-title">Day Predictor AI</h1>
             
             <div id="selection-ui">
+                <h1 class="main-title">Day Predictor AI</h1>
                 <div class="warning-badge">⚠️ WARNING: Kids Stay Away</div>
                 <p class="question-text">What Day Is Tomorrow?</p>
                 <div class="day-grid">
@@ -30,7 +30,9 @@
             </div>
 
             <div id="loading-ui" class="hidden">
-                <div class="loader-circle"></div>
+                <div class="gemini-loader">
+                    <div class="gemini-star">✦</div>
+                </div>
                 <p id="loading-text" class="loading-msg">Connecting To Jadoo...</p>
                 <div class="progress-container">
                     <div class="progress-fill" id="fill"></div>
@@ -38,6 +40,7 @@
             </div>
 
             <div id="result-ui" class="hidden">
+                <h1 class="main-title">Day Predictor AI</h1>
                 <h2 id="result-header"></h2>
                 <p id="result-desc"></p>
                 <div class="cert-container"><span class="cert-badge">Certified Time Decoder</span></div>
