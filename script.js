@@ -40,8 +40,9 @@ async function checkDate(userChoice) {
 
     for (let i = 0; i < steps.length; i++) {
         document.getElementById('loading-text').innerText = steps[i];
+        // This updates the new progress bar width
         document.getElementById('fill').style.width = ((i + 1) / steps.length) * 100 + "%";
-        await new Promise(res => setTimeout(res, 2000)); // 2-second delay
+        await new Promise(res => setTimeout(res, 2000)); 
     }
 
     showResult(isCorrect, realTomorrow);
