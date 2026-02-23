@@ -1,4 +1,3 @@
-// Matrix Background
 const canvas = document.getElementById('matrixCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -28,7 +27,7 @@ const steps = [
     "Running DNA Analysis...", "Decrypting Space-Time...",
     "Contacting To Hubble Telescope...", "Getting The Info From The Sun...",
     "Finalising Prediction..."
-];
+]; //
 
 async function checkDate(userChoice) {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
